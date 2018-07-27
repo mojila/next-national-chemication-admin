@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col, Form, Input, FormGroup, Label, Button } from 'reactstrap'
 import ReactLoading from 'react-loading'
+import { withRouter } from 'next/router'
 import { auth } from '../../firebase'
 
 
@@ -13,7 +14,17 @@ class LoginForm extends React.Component {
         isLoading: false
     }
     
+    componentDidMount() {
+        const { router } = this.props
+        let auth = localStorage.getItem('admin-uid')
+
+        if (auth) {
+            router.push('/')
+        }
+    }
+
     onSubmit(e) {
+        const { router } = this.props
         let { email, password } = this.state
         let isEmailValid = email === "admin@national-chemication.firebaseapp.com"
         let isPasswordValid = password === "adminpassword12345"
@@ -25,6 +36,7 @@ class LoginForm extends React.Component {
                 .then(userInfo => {
                     localStorage.setItem('admin-uid', userInfo.user.uid)
                     this.setState({ isLoading: false })
+                    router.push('/')
                 })
                 .catch(error => this.setState({ error }))
         } else {
@@ -52,7 +64,7 @@ class LoginForm extends React.Component {
                             <Form onSubmit={ this.onSubmit.bind(this) }>
                                 <div>
                                     <FormGroup>
-                                        <Label>E    mail</Label>
+                                        <Label>Email</Label>
                                         <Input type="email" value={ email } onChange={ e => this.setState({ email: e.target.value }) } required/>
                                     </FormGroup>
                                 </div>
@@ -81,4 +93,4 @@ class LoginForm extends React.Component {
     }
 }
 
-export default LoginForm
+export default withRouter(LoginForm)

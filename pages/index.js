@@ -1,25 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
-import Router from 'next/router'
+import Dashboard from '../components/dashboard'
 
 class Index extends React.Component {
-    state = {
-        uid: ''
-    }
-    
-    componentDidMount() {
-        const auth = localStorage.getItem('admin-uid')
-        let { uid } = this.state
-
-        if (auth) {
-            this.setState({
-                uid: auth
-            })
-        } else {
-            Router.replace('/login')
-        }
-    }
-    
     render() {
         return (
             <div>
@@ -27,7 +10,7 @@ class Index extends React.Component {
                     <title>Administrasi</title>
                 </Head>
                 <div>
-                    Welcome
+                    <Dashboard/>
                 </div>
             </div>
         )
