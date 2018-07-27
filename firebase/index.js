@@ -3,12 +3,12 @@ import 'firebase/auth'
 import 'firebase/database'
 
 const config = {
-    apiKey: "AIzaSyCg2iMT2SlEY2km2gXuEXJ_q0uExTMTQeo",
-    authDomain: "national-chemication.firebaseapp.com",
-    databaseURL: "https://national-chemication.firebaseio.com",
-    projectId: "national-chemication",
-    storageBucket: "national-chemication.appspot.com",
-    messagingSenderId: "595587030048"
+    apiKey: "AIzaSyB4wmjRet5qvfbg-EAeAYmdPOJsir9DI1c",
+    authDomain: "data-nc.firebaseapp.com",
+    databaseURL: "https://data-nc.firebaseio.com",
+    projectId: "data-nc",
+    storageBucket: "data-nc.appspot.com",
+    messagingSenderId: "199242738961"
 };
 
 const auth = !firebase.apps.length

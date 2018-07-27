@@ -37,25 +37,25 @@ class ListCEO extends React.Component {
 
         this.setState({ isLoading: true })
 
-        database.ref().child('pesertaCeo').once('value')
-            .then((snapshot) => {
-                let raw = snapshot.val()
-                let data = Object.keys(raw).map((key) => ({
-                    id: key,
-                    namaTim: raw[key].namaTim,
-                    email: raw[key].email,
-                    sekolah: raw[key].sekolah,
-                    contact: raw[key].contact,
-                    ketua: raw[key].ketua,
-                    anggota1: raw[key].anggota1,
-                    anggota2: raw[key].anggota2,
-                    buktiPembayaran: raw[key].buktiPembayaran,
+        // database.ref().child('pesertaCeo').once('value')
+        //     .then((snapshot) => {
+        //         let raw = snapshot.val()
+        //         let data = Object.keys(raw).map((key) => ({
+        //             id: key,
+        //             namaTim: raw[key].namaTim,
+        //             email: raw[key].email,
+        //             sekolah: raw[key].sekolah,
+        //             contact: raw[key].contact,
+        //             ketua: raw[key].ketua,
+        //             anggota1: raw[key].anggota1,
+        //             anggota2: raw[key].anggota2,
+        //             buktiPembayaran: raw[key].buktiPembayaran,
                     
-                }))
+        //         }))
 
-                this.setState({ data, isLoading: false })
-            })
-            .catch(error => console.error(error))
+        //         this.setState({ data, isLoading: false })
+        //     })
+        //     .catch(error => console.error(error))
     }
 
     render() {

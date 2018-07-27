@@ -11,43 +11,48 @@ class LoginForm extends React.Component {
         email: '',
         password: '',
         error: '',
-        isLoading: false
+        loading: false
     }
     
     componentDidMount() {
-        const { router } = this.props
-        let auth = localStorage.getItem('admin-uid')
+        this.mounted = true
 
-        if (auth) {
-            router.push('/')
+        if (this.mounted) {
+            let { router } = this.props
+            let auth = localStorage.getItem('admin-uid')
+
+            if (auth) {
+                router.push('/')
+            }
         }
     }
 
     onSubmit(e) {
         const { router } = this.props
         let { email, password } = this.state
-        let isEmailValid = email === "admin@national-chemication.firebaseapp.com"
-        let isPasswordValid = password === "adminpassword12345"
+        let isEmailValid = email === "admin@gmail.com"
+        let isPasswordValid = password === "admin12345"
 
-        this.setState({ isLoading: true })
+        this.setState({ loading: true })
 
         if (isEmailValid && isPasswordValid) {
             auth.signInWithEmailAndPassword(email, password)
                 .then(userInfo => {
                     localStorage.setItem('admin-uid', userInfo.user.uid)
-                    this.setState({ isLoading: false })
+                    this.setState({ loading: false })
                     router.push('/')
                 })
                 .catch(error => this.setState({ error }))
         } else {
             alert('Akses Ditolak, Periksa Email dan Password')
+            this.setState({ loading: false })
         }
 
         e.preventDefault()
     }
 
     render() {
-        let { email, password, isLoading } = this.state
+        let { email, password, loading } = this.state
         
         return (
             <Container>
@@ -77,10 +82,10 @@ class LoginForm extends React.Component {
                                 <div>
                                     <Button type="submit" color="success" block>
                                         {
-                                            isLoading && <ReactLoading className="mx-auto" type="spin" width={ 24 } height={ 24 } color="white"/>
+                                            loading && <ReactLoading className="mx-auto" type="spin" width={ 24 } height={ 24 } color="white"/>
                                         }
                                         {
-                                            !isLoading && 'Login'
+                                            !loading && 'Login'
                                         }
                                     </Button>
                                 </div>

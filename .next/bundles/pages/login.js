@@ -62,7 +62,7 @@ function (_React$Component) {
         email: '',
         password: '',
         error: '',
-        isLoading: false
+        loading: false
       }
     }), _temp));
   }
@@ -70,11 +70,16 @@ function (_React$Component) {
   _createClass(LoginForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var router = this.props.router;
-      var auth = localStorage.getItem('admin-uid');
+      this.mounted = true;
 
-      if (auth) {
-        router.push('/');
+      if (this.mounted) {
+        var router = this.props.router;
+
+        var _auth = localStorage.getItem('admin-uid');
+
+        if (_auth) {
+          router.push('/');
+        }
       }
     }
   }, {
@@ -86,10 +91,10 @@ function (_React$Component) {
       var _state = this.state,
           email = _state.email,
           password = _state.password;
-      var isEmailValid = email === "admin@national-chemication.firebaseapp.com";
-      var isPasswordValid = password === "adminpassword12345";
+      var isEmailValid = email === "admin@gmail.com";
+      var isPasswordValid = password === "admin12345";
       this.setState({
-        isLoading: true
+        loading: true
       });
 
       if (isEmailValid && isPasswordValid) {
@@ -97,7 +102,7 @@ function (_React$Component) {
           localStorage.setItem('admin-uid', userInfo.user.uid);
 
           _this2.setState({
-            isLoading: false
+            loading: false
           });
 
           router.push('/');
@@ -108,6 +113,9 @@ function (_React$Component) {
         });
       } else {
         alert('Akses Ditolak, Periksa Email dan Password');
+        this.setState({
+          loading: false
+        });
       }
 
       e.preventDefault();
@@ -120,64 +128,64 @@ function (_React$Component) {
       var _state2 = this.state,
           email = _state2.email,
           password = _state2.password,
-          isLoading = _state2.isLoading;
+          loading = _state2.loading;
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["c" /* Container */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 53
+          lineNumber: 58
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["o" /* Row */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 54
+          lineNumber: 59
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["b" /* Col */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 55
+          lineNumber: 60
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         className: "p-2 bg-secondary text-center text-white",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 56
+          lineNumber: 61
         }
       }, "Login"))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["o" /* Row */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 61
+          lineNumber: 66
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["b" /* Col */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 62
+          lineNumber: 67
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         className: "p-4 bg-white border font-weight-light",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 63
+          lineNumber: 68
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["h" /* Form */], {
         onSubmit: this.onSubmit.bind(this),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 64
+          lineNumber: 69
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 65
+          lineNumber: 70
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["i" /* FormGroup */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 66
+          lineNumber: 71
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["k" /* Label */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 67
+          lineNumber: 72
         }
       }, "Email"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["j" /* Input */], {
         type: "email",
@@ -190,22 +198,22 @@ function (_React$Component) {
         required: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 68
+          lineNumber: 73
         }
       }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 71
+          lineNumber: 76
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["i" /* FormGroup */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 72
+          lineNumber: 77
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["k" /* Label */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 73
+          lineNumber: 78
         }
       }, "Password"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["j" /* Input */], {
         type: "password",
@@ -218,12 +226,12 @@ function (_React$Component) {
         required: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 74
+          lineNumber: 79
         }
       }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 77
+          lineNumber: 82
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_reactstrap__["a" /* Button */], {
         type: "submit",
@@ -231,9 +239,9 @@ function (_React$Component) {
         block: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 78
+          lineNumber: 83
         }
-      }, isLoading && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_loading___default.a, {
+      }, loading && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_loading___default.a, {
         className: "mx-auto",
         type: "spin",
         width: 24,
@@ -241,9 +249,9 @@ function (_React$Component) {
         color: "white",
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 80
+          lineNumber: 85
         }
-      }), !isLoading && 'Login')))))));
+      }), !loading && 'Login')))))));
     }
   }]);
 
@@ -259,7 +267,7 @@ function (_React$Component) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return auth; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return database; });
+/* unused harmony export database */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_firebase_app__ = __webpack_require__("./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_firebase_app___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_firebase_app__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_firebase_auth__ = __webpack_require__("./node_modules/firebase/auth/dist/index.esm.js");
@@ -268,12 +276,12 @@ function (_React$Component) {
 
 
 var config = {
-  apiKey: "AIzaSyCg2iMT2SlEY2km2gXuEXJ_q0uExTMTQeo",
-  authDomain: "national-chemication.firebaseapp.com",
-  databaseURL: "https://national-chemication.firebaseio.com",
-  projectId: "national-chemication",
-  storageBucket: "national-chemication.appspot.com",
-  messagingSenderId: "595587030048"
+  apiKey: "AIzaSyB4wmjRet5qvfbg-EAeAYmdPOJsir9DI1c",
+  authDomain: "data-nc.firebaseapp.com",
+  databaseURL: "https://data-nc.firebaseio.com",
+  projectId: "data-nc",
+  storageBucket: "data-nc.appspot.com",
+  messagingSenderId: "199242738961"
 };
 var auth = !__WEBPACK_IMPORTED_MODULE_0_firebase_app___default.a.apps.length ? __WEBPACK_IMPORTED_MODULE_0_firebase_app___default.a.initializeApp(config).auth() : __WEBPACK_IMPORTED_MODULE_0_firebase_app___default.a.app().auth();
 var database = !__WEBPACK_IMPORTED_MODULE_0_firebase_app___default.a.apps.length ? __WEBPACK_IMPORTED_MODULE_0_firebase_app___default.a.initializeApp(config).database() : __WEBPACK_IMPORTED_MODULE_0_firebase_app___default.a.app().database();
