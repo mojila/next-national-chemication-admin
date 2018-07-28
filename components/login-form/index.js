@@ -27,6 +27,10 @@ class LoginForm extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.mounted = false
+    }
+
     onSubmit(e) {
         const { router } = this.props
         let { email, password } = this.state
