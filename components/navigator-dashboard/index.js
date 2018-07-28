@@ -61,7 +61,7 @@ class NavigatorDashboard extends React.Component {
                                 EC
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem className="pointer noselect font-weight-light small">List Pendaftar</DropdownItem>
+                                <DropdownItem className="pointer noselect font-weight-light small" onClick={ () => router.push('/ec') }>List Pendaftar</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                         <Dropdown nav isOpen={ dropdownHSFC } toggle={ this.dropdownHSFCToggle.bind(this) } className="pointer noselect font-weight-light small">
