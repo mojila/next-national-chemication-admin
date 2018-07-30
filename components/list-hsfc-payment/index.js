@@ -1,28 +1,31 @@
 import React from 'react'
 import { withRouter } from 'next/router'
 import NavigatorDashboard from '../navigator-dashboard'
-import { Container, Row, Col } from 'reactstrap'
+import { Container, Row, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import ReactTable from 'react-table'
 import ReactLoading from 'react-loading'
 import { database } from '../../firebase'
 
-class ListHSFC extends React.Component {
+class ListHSFCPayment extends React.Component {
     state = {
         loading: true,
-        data: ''
+        data: '',
+        modal: false,
+        payment: ''
     }
     
     componentDidMount() {
         this.mounted = true
 
         if (this.mounted) {
-            database.ref('pesertaHSFC').once('value')
-            .then((pesertaHSFC) => {
-                let raw = pesertaHSFC.val()
+            database.ref('paymentHSFC').once('value')
+            .then((paymentHSFC) => {
+                let raw = paymentHSFC.val()
                 let data = Object.keys(raw).map((key) => ({
                     id: key,
-                    school: raw[key].school.name,
-                    telephone: raw[key].school.telephone
+                    school: raw[key].school,
+                    contact: raw[key].contact,
+                    payment: raw[key].payment
                 }))
 
                 return data
@@ -35,13 +38,17 @@ class ListHSFC extends React.Component {
         this.mounted = false
     }
 
+    toggle() {
+        this.setState({ modal: !this.state.modal })
+    }
+
     render() {
-        let { loading, data } = this.state
+        let { loading, payment, modal, data } = this.state
         let columns = [{ Header: 'Identitas Tim', columns: [
             { Header: 'ID', accessor: 'id', Cell: row => row.value.substr(-5,5) },
             { Header: 'Nama Sekolah', accessor: 'school' },
-            { Header: 'Telpon', accessor: 'telephone' }
-        ] }]
+            { Header: 'Kontak', accessor: 'contact' }
+        ]}, { Header: 'Bukti Pembayaran', accessor: 'payment', Cell: row => <Button color="outline-primary" size="sm" onClick={() => this.setState({ modal: true, payment: row.value })} block>Lihat</Button> }]
 
         return (
             <div>
@@ -54,9 +61,18 @@ class ListHSFC extends React.Component {
                         </Col>
                     </Row>
                 </Container>
+                <Modal isOpen={modal} toggle={this.toggle.bind(this)} className={this.props.className}>
+                    <ModalHeader toggle={this.toggle.bind(this)}>Bukti Pembayaran</ModalHeader>
+                    <ModalBody>
+                        { payment && <center><img className="img-fluid" src={ payment }/></center> }
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="secondary" onClick={this.toggle.bind(this)}>Tutup</Button>
+                    </ModalFooter>
+                </Modal>
             </div>
         )
     }
 }
 
-export default withRouter(ListHSFC)
+export default withRouter(ListHSFCPayment)

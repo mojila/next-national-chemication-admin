@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import ListHSFC from '../../components/list-hsfc'
+import ListHSFCPayment from '../../components/list-hsfc-payment'
 
 class HSFC extends React.Component {
     render() {
@@ -10,7 +10,7 @@ class HSFC extends React.Component {
                     <title>HSFC Bukti Pembayaran</title>
                 </Head>
                 <div>
-                    <ListHSFC/>
+                    <ListHSFCPayment/>
                 </div>
             </div>
         )
