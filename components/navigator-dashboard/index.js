@@ -69,8 +69,8 @@ class NavigatorDashboard extends React.Component {
                                 HSFC
                             </DropdownToggle>
                             <DropdownMenu>
-                                <DropdownItem className="pointer noselect font-weight-light small">List Pendaftar</DropdownItem>
-                                <DropdownItem className="pointer noselect font-weight-light small">Bukti Pembayaran</DropdownItem>
+                                <DropdownItem className="pointer noselect font-weight-light small" onClick={ () => router.push('/hsfc') }>List Pendaftar</DropdownItem>
+                                <DropdownItem className="pointer noselect font-weight-light small" onClick={ () => router.push('/payment/hsfc') }>Bukti Pembayaran</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </Nav>
