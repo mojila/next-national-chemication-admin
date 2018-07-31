@@ -23,8 +23,7 @@ class ListEC extends React.Component {
                     id: key,
                     university: raw[key].university.name,
                     title: raw[key].paper.title,
-                    subTheme: raw[key].paper.subTheme,
-                    contact: raw[key].leader.contact
+                    subTheme: raw[key].paper.subTheme
                 }))
 
                 return data
@@ -42,7 +41,6 @@ class ListEC extends React.Component {
         let columns = [{ Header: 'Identitas Tim', columns: [
             { Header: 'ID', accessor: 'id', Cell: row => row.value.substr(-5,5) },
             { Header: 'Institusi', accessor: 'university' },
-            { Header: 'Kontak Ketua', accessor: 'contact' }
         ]},{ Header: 'Karya', columns: [
             { Header: 'Judul', accessor: 'title' },
             { Header: 'Sub Tema', accessor: 'subTheme' }

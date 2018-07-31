@@ -28,8 +28,7 @@ class ListCEO extends React.Component {
                     member1Exist: raw[key].member1Exist,
                     member2Exist: raw[key].member2Exist,
                     payed: raw[key].payed,
-                    payment: raw[key].payment,
-                    contact: raw[key].leader.contact
+                    payment: raw[key].payment
                 }))
 
                 return data
@@ -62,7 +61,7 @@ class ListCEO extends React.Component {
 
     render() {
         let { data, loading, modal, payment } = this.state
-        let columns = [{ Header: 'Identitas Tim', columns: [{ Header: 'ID', accessor: 'id', Cell: row => row.value.substring(-5,5) }, { Header: 'Nama Tim', accessor: 'teamName' },{ Header: 'Kontak Ketua', accessor: 'contact' }]}, 
+        let columns = [{ Header: 'Identitas Tim', columns: [{ Header: 'ID', accessor: 'id', Cell: row => row.value.substring(-5,5) }, { Header: 'Nama Tim', accessor: 'teamName' }]}, 
         { Header: 'Status Tim', columns: [{ Header: 'Ketua', accessor: 'leaderExist', Cell: row => (<div className={"p-1 text-white text-center rounded small " + (row.value ? "bg-success":"bg-warning")}>{ row.value ? "Ada":"Belum di isi" }</div>) },{ Header: 'Anggota 1', accessor: 'member1Exist', Cell: row => (<div className={"p-1 text-white text-center rounded small " + (row.value ? "bg-success":"bg-warning")}>{ row.value ? "Ada":"Belum di isi" }</div>) },{ Header: 'Anggota 2', accessor: 'member2Exist', Cell: row => (<div className={"p-1 text-white text-center rounded small " + (row.value ? "bg-success":"bg-warning")}>{ row.value ? "Ada":"Belum di isi" }</div>) }]},
         { Header: 'Pembayaran', columns: [{ Header: 'Status', accessor: 'payed', Cell: row => (row.value ? "Lunas":"Belum Lunas") }, { Header: 'Bukti Pembayaran', accessor: 'payment', Cell: row => (row.value ? <Button size="sm" color="outline-primary" onClick={ () => this.setState({ payment: row.value, modal: true }) } block>Lihat</Button>:"Belum ada") }]},
         { Header: 'Opsi', accessor: 'payed', Cell: row => (row.value ? <Button size="sm" color="outline-danger" onClick={ this.deverify.bind(this, row.row.id) }>Batal Verifikasi</Button>:<Button size="sm" color="outline-success" onClick={ this.verify.bind(this, row.row.id) }>Verifikasi</Button>) }]
